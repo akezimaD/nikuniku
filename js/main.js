@@ -124,9 +124,20 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(`ゲーム終了！スコア: ${score}`);
     }
 
+    let isComposing = false;
+
+    function hiraganaToKatakana(str) {
+        return str.replace(/[\u3041-\u3096]/g, function(match) {
+            const charCode = match.charCodeAt(0) + 0x60;
+            return String.fromCharCode(charCode);
+        });
+    }
+
     function handleTyping(e) {
+        if (isComposing) return;
         const typedValue = e.target.value;
-        const matchedPlate = plates.find(plate => plate.word === typedValue);
+        const katakanaValue = hiraganaToKatakana(typedValue);
+        const matchedPlate = plates.find(plate => plate.word === katakanaValue);
 
         if (matchedPlate) {
             score += 10;
@@ -141,6 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startButton.addEventListener('click', startGame);
+
+    inputBox.addEventListener('compositionstart', () => {
+        isComposing = true;
+    });
+
+    inputBox.addEventListener('compositionend', (e) => {
+        isComposing = false;
+        handleTyping(e);
+    });
+
     inputBox.addEventListener('input', handleTyping);
     difficultySelector.addEventListener('change', (e) => {
         if (e.target.name === 'difficulty') {
