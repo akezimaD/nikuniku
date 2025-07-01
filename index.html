@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>肉打</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>肉打</h1>
+            <div class="game-info">
+                <span>残り時間: <span id="time">60</span>s</span>
+                <span>スコア: <span id="score">0000</span></span>
+                <span>ハイスコア: <span id="high-score">0000</span></span>
+            </div>
+        </header>
+
+        <main id="game-area">
+            <div id="plate-lane"></div>
+        </main>
+
+        <footer>
+            <div id="difficulty-selector">
+                <label><input type="radio" name="difficulty" value="easy" checked> やわらか</label>
+                <label><input type="radio" name="difficulty" value="normal"> ふつう</label>
+                <label><input type="radio" name="difficulty" value="hard"> かたまり</label>
+            </div>
+            <input type="text" id="input-box" placeholder="ここにタイピング" disabled>
+            <button id="start-button">ゲーム開始</button>
+        </footer>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
